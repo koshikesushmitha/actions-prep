@@ -1,0 +1,28 @@
+on : 
+  push :
+    branches :
+      - "main"
+      - "release/*"
+  pull_request :
+    branches :
+      - "main"
+jobs :
+  job1 : 
+    runs-on : ubuntu-latest
+    steps :
+     - name : check repo
+       uses : actions/checkout@v3
+     - name: Install Node.js dependencies
+       run: npm install
+  job2 :
+    runs-on : ubuntu-latest
+    steps : 
+      - name : check repo
+        run : actions/checkout@v3
+      - name : check version
+        run : python --version
+      
+      
+      
+    
+    
