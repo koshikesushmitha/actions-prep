@@ -20,8 +20,8 @@ jobs :
     steps :
       - name : check repo
         run : actions/checkout@v3
-      - name : check python version
-        run : python --version
+      - name : check nslookup od domain
+        run : nslookup dbpki.db.com
       
  
       
