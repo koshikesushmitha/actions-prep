@@ -19,7 +19,7 @@ jobs :
     needs : job1
     steps :
       - name : check repo
-        run : actions/checkout@v3
+        uses : actions/checkout@v3
       - name : check nslookup od domain
         run : nslookup dbpki.db.com
       
