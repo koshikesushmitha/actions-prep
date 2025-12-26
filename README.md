@@ -59,6 +59,17 @@ Demonstrate how to publish a component as a GitHub release using GitHub Actions
 
 Deploy a release to a cloud provider using a GitHub Actions workflow
 
+
+
+
+
+
+
+
+
+
+
+
 Domain 2: Consume workflows (20%)
 Interpret the effects of a workflow
 Identify the event that triggered a workflow from its effects in a repository, issue, or pull request
@@ -101,6 +112,12 @@ Demonstrate how to download workflow artifacts from the user interface
 
 Describe how to use an organization’s templated workflow
 
+
+
+
+
+
+
 Domain 3: Author and maintain actions (25%)
 Use available action types
 Identify the type of action required for a given problem (e.g., JavaScript, Docker container, run step)
@@ -115,6 +132,15 @@ Identify the files and directory structure needed to create an action
 Identify the metadata and syntax needed to create an action
 
 Implement workflow commands within an action to communicate with the runner (Note: this includes exit codes)
+
+
+
+
+
+
+
+
+
 
 Domain 4: Manage GitHub Actions in the enterprise (15%)
 Distribute actions and workflows to the enterprise
