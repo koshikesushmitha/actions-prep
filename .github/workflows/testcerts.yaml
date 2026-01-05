@@ -20,6 +20,9 @@ jobs:
           | tr ' ' '\n' \
           > request.csr
 
+          openssl req -in request.csr -noout -text
+
+
       - name: Debug CSR file
         run: |
           cat -n request.csr
