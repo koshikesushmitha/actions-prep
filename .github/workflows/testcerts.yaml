@@ -4,24 +4,24 @@ on:
   workflow_dispatch:
     inputs:
       csr:
-        description: "Paste your CSR PEM here"
+        description: "Paste your CSR PEM here (raw, including BEGIN/END lines)"
         required: true
 
 jobs:
   view-csr:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Write the raw CSR input to a file
-      - name: Write CSR to file
+      - name: Convert input CSR to base64 and decode safely
+        shell: bash
         run: |
-          # cat << 'EOF' > request.csr
-          # ${{ github.event.inputs.csr }}
-          # EOF
+          # Read raw CSR input into a variable
+          CSR_RAW="${{ github.event.inputs.csr }}"
 
-      # Step 2: Display CSR contents
-      - name: Decode CSR from base64
-        run: |
-          newcsr = base64 -w0 ${{ github.event.inputs.csr }}
-          echo "$newcsr" | base64 -d > request.csr
+          # Encode it to base64 (this ensures line breaks won't break OpenSSL)
+          BASE64_CSR=$(echo "$CSR_RAW" | base64 -w0)
+
+          # Decode base64 into a file
+          echo "$BASE64_CSR" | base64 -d > request.csr
+
+          # View CSR contents
           openssl req -in request.csr -noout -text
-
