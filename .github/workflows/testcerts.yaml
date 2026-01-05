@@ -18,14 +18,8 @@ jobs:
           ${{ github.event.inputs.csr }}
           EOF
       - name: View contents
+        shell: bash
         run: |
-          first_line=$(head -1 request.csr)
-          if [[ "$first_line" == "-----BEGIN CERTIFICATE REQUEST-----" ]]; then
-            openssl req -in request.csr -noout -text
-          elif [[ "$first_line" == "-----BEGIN CERTIFICATE-----" ]]; then
-            openssl x509 -in request.csr -noout -text
-          else
-            echo "Unknown PEM type"
-            exit 1
-          fi
+          openssl req -in request.csr -noout -text
+          
 
