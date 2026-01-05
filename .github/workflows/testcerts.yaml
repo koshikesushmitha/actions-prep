@@ -12,6 +12,8 @@ jobs:
   view-csr:
     runs-on: ubuntu-latest
     steps:
+      - name: Check OpenSSL version
+        run: openssl version
       - name: View contents
         shell: bash
         run: |
