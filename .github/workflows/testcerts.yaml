@@ -17,7 +17,7 @@ jobs:
       - name: View contents
         shell: bash
         run: |
-         CSR_FILE="certs/request.csr"
-         openssl req -in $CSR_FILE -noout -text
+         CSR_FILE="contents/request.csr"
+         openssl req -in CSR_FILE -noout -text
           
 
