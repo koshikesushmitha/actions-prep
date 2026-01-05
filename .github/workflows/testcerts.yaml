@@ -14,11 +14,13 @@ jobs:
       # Step 1: Write the raw CSR input to a file
       - name: Write CSR to file
         run: |
-          cat << 'EOF' > request.csr
-          ${{ github.event.inputs.csr }}
-          EOF
+          # cat << 'EOF' > request.csr
+          # ${{ github.event.inputs.csr }}
+          # EOF
 
       # Step 2: Display CSR contents
-      - name: Display CSR contents
+      - name: Decode CSR from base64
         run: |
+          echo "${{ github.event.inputs.csr }}" | base64 -d > request.csr
           openssl req -in request.csr -noout -text
+
