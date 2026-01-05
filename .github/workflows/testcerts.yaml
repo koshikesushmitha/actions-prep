@@ -14,18 +14,10 @@ jobs:
     steps:
       - name: Reconstruct CSR formatting
         run: |
-          echo "${{ inputs.csr }}" \
-          | sed 's/-----BEGIN CERTIFICATE REQUEST-----/-----BEGIN CERTIFICATE REQUEST-----\n/' \
-          | sed 's/-----END CERTIFICATE REQUEST-----/\n-----END CERTIFICATE REQUEST-----/' \
-          | tr ' ' '\n' \
-          > request.csr
+          echo "${{ github.event.inputs.csr }}" | base64 -d > request.csr
 
-          openssl req -in request.csr -noout -text
+          #openssl req -in request.csr -noout -text
 
-
-      - name: Debug CSR file
-        run: |
-          cat -n request.csr
 
       - name: View CSR
         run: |
