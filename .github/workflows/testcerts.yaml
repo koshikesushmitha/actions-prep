@@ -12,13 +12,11 @@ jobs:
   view-csr:
     runs-on: ubuntu-latest
     steps:
-      - name: Reconstruct CSR formatting
+      - name: Decode CSR
         run: |
-          echo "${{ github.event.inputs.csr }}" | base64 -w0 request.csr
-
-          #openssl req -in request.csr -noout -text
-
+          echo "${{ github.event.inputs.csr }}" | base64 -d > request.csr
 
       - name: View CSR
         run: |
           openssl req -in request.csr -noout -text
+
