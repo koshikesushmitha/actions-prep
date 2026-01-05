@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       csr:
-        description: "CSR raw content (PEM format)"
+        description: "CSR PEM (can be single-line)"
         required: true
         type: string
 
@@ -12,12 +12,18 @@ jobs:
   view-csr:
     runs-on: ubuntu-latest
     steps:
-      - name: Write CSR to file
+      - name: Reconstruct CSR formatting
         run: |
-          cat << 'EOF' > request.csr
-          ${{ github.event.inputs.csr }}
-          EOF
+          echo "${{ inputs.csr }}" \
+          | sed 's/-----BEGIN CERTIFICATE REQUEST-----/-----BEGIN CERTIFICATE REQUEST-----\n/' \
+          | sed 's/-----END CERTIFICATE REQUEST-----/\n-----END CERTIFICATE REQUEST-----/' \
+          | tr ' ' '\n' \
+          > request.csr
 
-      - name: View CSR contents
+      - name: Debug CSR file
+        run: |
+          cat -n request.csr
+
+      - name: View CSR
         run: |
           openssl req -in request.csr -noout -text
