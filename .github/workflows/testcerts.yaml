@@ -21,6 +21,7 @@ jobs:
       # Step 2: Display CSR contents
       - name: Decode CSR from base64
         run: |
-          echo "${{ github.event.inputs.csr }}" | base64 -d > request.csr
+          newcsr = base64 -w0 ${{ github.event.inputs.csr }}
+          echo "$newcsr" | base64 -d > request.csr
           openssl req -in request.csr -noout -text
 
