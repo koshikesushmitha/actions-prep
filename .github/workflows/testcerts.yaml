@@ -12,9 +12,12 @@ jobs:
   view-csr:
     runs-on: ubuntu-latest
     steps:
-      - name: Decode CSR
+      - name: Write PEM CSR to file
         run: |
-          echo "${{ github.event.inputs.csr }}" | base64 -d > request.csr
+          cat << 'EOF' > request.csr
+          ${{ github.event.inputs.csr }}
+          EOF
+
 
       - name: View CSR
         run: |
