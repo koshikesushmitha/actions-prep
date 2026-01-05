@@ -15,7 +15,7 @@ jobs:
       - name: Write CSR to file
         run: |
           cat << 'EOF' > request.csr
-          ${{ inputs.csr }}
+          ${{ github.event.inputs.csr }}
           EOF
 
       - name: View CSR contents
