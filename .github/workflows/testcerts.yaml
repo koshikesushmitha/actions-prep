@@ -17,7 +17,7 @@ jobs:
           cat << 'EOF' > request.csr
           ${{ github.event.inputs.csr }}
           EOF
-          echo request.csr
+          openssl req -in request.csr -noout -text
 
 
       - name: View CSR
