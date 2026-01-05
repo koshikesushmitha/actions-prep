@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Reconstruct CSR formatting
         run: |
-          echo "${{ github.event.inputs.csr }}" | base64 -d > request.csr
+          echo "${{ github.event.inputs.csr }}" | base64 -w0 request.csr
 
           #openssl req -in request.csr -noout -text
 
