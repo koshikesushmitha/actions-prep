@@ -1,0 +1,23 @@
+name: View CSR Contents
+
+on:
+  workflow_dispatch:
+    inputs:
+      csr:
+        description: "CSR raw content (PEM format)"
+        required: true
+        type: string
+
+jobs:
+  view-csr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write CSR to file
+        run: |
+          cat << 'EOF' > request.csr
+          ${{ github.event.inputs.csr }}
+          EOF
+
+      - name: View CSR contents
+        run: |
+          openssl req -in request.csr -noout -text
