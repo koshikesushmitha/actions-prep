@@ -18,6 +18,6 @@ jobs:
         shell: bash
         run: |
          CSR_FILE="certs/request.csr"
-         openssl req -in CSR_FILE -noout -text
+         openssl req -in $CSR_FILE -noout -text
           
 
