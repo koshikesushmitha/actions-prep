@@ -19,7 +19,7 @@ jobs:
           EOF
       - name: View contents
         run: |
-          first_line=$(head -1 request.pem)
+          first_line=$(head -1 request.csr)
           if [[ "$first_line" == "-----BEGIN CERTIFICATE REQUEST-----" ]]; then
             openssl req -in request.csr -noout -text
           elif [[ "$first_line" == "-----BEGIN CERTIFICATE-----" ]]; then
