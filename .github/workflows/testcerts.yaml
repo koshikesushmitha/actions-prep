@@ -20,8 +20,12 @@ jobs:
           # Encode it to base64 (this ensures line breaks won't break OpenSSL)
           BASE64_CSR=$(echo "$CSR_RAW" | base64 -w0)
 
+          echo "$BASE64_CSR"
+
           # Decode base64 into a file
           echo "$BASE64_CSR" | base64 -d > request.csr
+
+          echo request.csr
 
           # View CSR contents
           openssl req -in request.csr -noout -text
